@@ -14,7 +14,7 @@
         "@inertiajs/inertia-vue": "^0.6.2",
         "@inertiajs/progress": "^0.2.4",
         "autoprefixer": "^10.2.4",
-        "eslint": "^6.8.0",
+        "eslint": "^8.3.0",
         "eslint-plugin-vue": "^7.5.0",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.21",
