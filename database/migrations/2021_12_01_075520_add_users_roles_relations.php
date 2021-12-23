@@ -14,7 +14,7 @@ class AddUsersRolesRelations extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->foreign('account_id')->references('id')->on('accounts');
+//            $table->foreign('account_id')->references('id')->on('accounts');
             $table->foreign('role_id')->references('id')->on('roles');
         });
     }

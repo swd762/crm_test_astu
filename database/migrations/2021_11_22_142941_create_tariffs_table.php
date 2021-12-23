@@ -17,6 +17,7 @@ class CreateTariffsTable extends Migration
             $table->id();
             $table->float('price', 8, 2);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

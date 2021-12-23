@@ -16,9 +16,10 @@ class CreateAccountsTable extends Migration
         Schema::create('accounts', function (Blueprint $table) {
             $table->id();
             $table->integer('account_num')->nullable();
-            $table->foreignId('meter_id');
-            $table->foreignId('bill_id');
+//            $table->foreignId('meter_id')->nullable();
+//            $table->foreignId('bill_id')->nullable();
             $table->timestamps();
+
         });
     }
 
