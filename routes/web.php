@@ -46,8 +46,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/', [DashboardController::class, 'index'])
         ->name('dashboard');
-    Route::get('/dashboard', [DashboardController::class, 'index'])
-        ->name('dashboard');
+//    Route::get('/dashboard', [DashboardController::class, 'index'])
+//        ->name('dashboard');
 
     Route::get('bills', [BillsController::class, 'index'])
         ->name('bills');
@@ -61,8 +61,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('meters/create', [MetersController::class, 'create'])
         ->name('meters.create');
 
-    Route::get('meters/edit', [MetersController::class, 'edit'])
+    Route::get('meters/{meter}/edit', [MetersController::class, 'edit'])
         ->name('meters.edit');
+
+    Route::get('meters/{meter}', [MetersController::class, 'update'])
+        ->name('meters.update');
 
     Route::post('meters', [MetersController::class, 'store'])
         ->name('meters.store');

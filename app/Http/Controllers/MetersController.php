@@ -51,6 +51,26 @@ class MetersController extends Controller
 
     public function edit(Meter $meter)
     {
-//        return Inertia::render()
+        return Inertia::render('Meters/Edit', [
+            'meters'=> [
+                'id' => $meter->id,
+                'meters_previous' => $meter->meters_previous,
+                'meters_last' => $meter->meters_last,
+                'date' => Carbon::parse($meter->created_at)->toDateString(),
+            ]
+        ]);
+    }
+
+    public function update(Meter $meter)
+    {
+        $meter->update(
+            Request::validate([
+                'id'=>['required'],
+                'meters_last' => ['required', 'numeric'],
+                'meters_previous' => ['required', 'numeric'],
+            ])
+        );
+
+        return Redirect::back()->with('success', 'meters updated');
     }
 }
