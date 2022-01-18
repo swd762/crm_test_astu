@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AbonentsController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\BillsController;
 use App\Http\Controllers\DashboardController;
@@ -46,14 +47,18 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/', [DashboardController::class, 'index'])
         ->name('dashboard');
-//    Route::get('/dashboard', [DashboardController::class, 'index'])
-//        ->name('dashboard');
+
+
 
     Route::get('bills', [BillsController::class, 'index'])
         ->name('bills');
-
-    Route::get('bills/create', [BillsController::class, 'create'])
+    Route::get('bills/{account}/create', [BillsController::class, 'create'])
         ->name('bills.create');
+    Route::get('bills/{bill}/edit', [BillsController::class, 'edit'])
+        ->name('bills.edit');
+    Route::get('bills/store', [BillsController::class, 'store'])
+        ->name('bills.store');
+
 
     Route::get('meters', [MetersController::class, 'index'])
         ->name('meters');
@@ -70,11 +75,21 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('meters', [MetersController::class, 'store'])
         ->name('meters.store');
 
+
+
     Route::get('reports', [ReportsController::class, 'index'])
         ->name('reports');
 
+    // Abonents
 
+    Route::get('abonents', [AbonentsController::class, 'index'])
+        ->name('abonents');
+    Route::get('abonents/{account}/meters', [AbonentsController::class, 'abonentMeters'])
+        ->name('abonents.meters');
+    Route::get('abonents/{account}/bills', [AbonentsController::class, 'abonentBills'])
+        ->name('abonents.bills');
 });
+
 
 //
 // Users

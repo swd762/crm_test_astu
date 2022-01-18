@@ -14,7 +14,7 @@ class MetersController extends Controller
     public function index()
     {
         return Inertia::render('Meters/Index', [
-            'filters' => \Illuminate\Support\Facades\Request::all('search', 'trashed'),
+            'filters' => Request::all('search', 'trashed'),
             'meters' => Auth::user()->account->meters()
                 ->orderBy('created_at', 'desc')
 //                ->filter(Request::only('search', 'trashed'))

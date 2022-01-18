@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Account;
+use App\Models\Bill;
 use App\Models\Meter;
 use App\Models\Role;
 use App\Models\User;
@@ -36,10 +37,22 @@ class UserSeeder extends Seeder
         $admin->save();
 
         $meters = new Meter();
-        $meters->previous = 5521232;
-        $meters->last = 5621232;
+        $meters->previous = 100;
+        $meters->last = 200;
         $meters->account_id = $adminAccount->id;
         $meters->save();
+
+        $meters = new Meter();
+        $meters->previous = 200;
+        $meters->last = 300;
+        $meters->account_id = $adminAccount->id;
+        $meters->save();
+
+        $bill = new Bill();
+        $bill->account_id = $adminAccount->id;
+        $bill->bill_number = 1;
+        $bill->amount = 500;
+        $bill->save();
 
     }
 }

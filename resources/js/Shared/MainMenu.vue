@@ -24,6 +24,13 @@
                 <div :class="isUrl('reports') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Отчеты</div>
             </inertia-link>
         </div>
+        <div class="mb-4">
+            <inertia-link class="flex items-center group py-3" :href="route('abonents')">
+                <icon name="printer" class="w-4 h-4 mr-2" :class="isUrl('abonents') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
+                <div :class="isUrl('abonents') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Абоненты</div>
+            </inertia-link>
+        </div>
+
     </div>
 </template>
 
