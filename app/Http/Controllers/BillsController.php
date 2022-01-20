@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Account;
+use App\Models\Meter;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use Inertia\Inertia;
@@ -27,13 +28,21 @@ class BillsController extends Controller
         ]);
     }
 
-    public function create()
+    public function createFromMeters(Meter $meter)
     {
-        return Inertia::render('Bills/Create');
+        return Inertia::render('Bills/CreateFromMeters', [
+            'filters' => Request::all('search', 'trashed'),
+            'meters' => $meter
+        ]);
     }
 
-    public function store(Account $account)
+    public function storeFromMeters(Meter $meter)
     {
+        $account = Account::where('id',$meter->account_id)->first();
+        $request = Request::all();
 
+        $account->bills()->create(
+
+        );
     }
 }

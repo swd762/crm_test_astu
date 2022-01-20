@@ -77,6 +77,7 @@ export default {
     props: {
         filters: Object,
         bills: Object,
+        account:Object
     },
     data() {
         return {

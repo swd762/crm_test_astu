@@ -33,15 +33,8 @@ Route::post('login', [AuthenticatedSessionController::class, 'store'])
 Route::delete('logout', [AuthenticatedSessionController::class, 'destroy'])
     ->name('logout');
 
-// Dashboard
-
-
 //Admin
 
-
-//Route::prefix('admin')->middleware('auth')->group(function () {
-//
-//});
 
 Route::group(['middleware' => 'auth'], function () {
 
@@ -49,15 +42,21 @@ Route::group(['middleware' => 'auth'], function () {
         ->name('dashboard');
 
 
-
+    // basic bills actions
     Route::get('bills', [BillsController::class, 'index'])
         ->name('bills');
-    Route::get('bills/{account}/create', [BillsController::class, 'create'])
-        ->name('bills.create');
     Route::get('bills/{bill}/edit', [BillsController::class, 'edit'])
         ->name('bills.edit');
     Route::get('bills/store', [BillsController::class, 'store'])
         ->name('bills.store');
+
+    // create bills from meters
+    Route::get('bills/{meter}/create', [BillsController::class, 'createFromMeters'])
+        ->name('bills.create.meters');
+    Route::post('bills/{meter}/store', [BillsController::class, 'storeFromMeters'])
+        ->name('bills.store.meters');
+
+
 
 
     Route::get('meters', [MetersController::class, 'index'])

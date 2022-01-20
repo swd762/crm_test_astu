@@ -34,6 +34,7 @@ class AbonentsController extends Controller
     {
         return Inertia::render('Abonents/Meters', [
             'filters' => Request::all('search', 'trashed'),
+            'account' => $account,
             'meters' => $account->meters()
                 ->orderBy('created_at', 'desc')
 //                ->filter(Request::only('search', 'trashed'))

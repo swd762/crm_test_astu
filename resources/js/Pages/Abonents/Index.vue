@@ -45,16 +45,6 @@
                             {{ abonent.first_name }}
                         </span>
                     </td>
-                    <!--                    <td class="border-t">-->
-                    <!--                        <inertia-link class="px-6 py-4 flex items-center" :href="route('meters.edit', meter.id)" tabindex="-1">-->
-                    <!--                            {{ meter.meters_last - meter.meters_previous }}-->
-                    <!--                        </inertia-link>-->
-                    <!--                    </td>-->
-                    <!--                    <td class="border-t">-->
-                    <!--                        <inertia-link class="px-6 py-4 flex items-center" :href="route('meters.edit', meter.id)" tabindex="-1">-->
-                    <!--                            {{ meter.date | moment().format('DD-MM-YYYY') }}-->
-                    <!--                        </inertia-link>-->
-                    <!--                    </td>-->
                     <td class="border-t">
                         <inertia-link class="flex items-center" :href="route('abonents.meters', abonent.id)" tabindex="-1">
                             <span class="px-6 py-4 flex items-center">Показания</span>
