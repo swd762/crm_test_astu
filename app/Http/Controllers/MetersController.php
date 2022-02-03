@@ -11,6 +11,11 @@ use Inertia\Inertia;
 
 class MetersController extends Controller
 {
+    /**
+     * Список показаний текущего пользователя
+     *
+     * @return \Inertia\Response
+     */
     public function index()
     {
         return Inertia::render('Meters/Index', [
@@ -29,6 +34,11 @@ class MetersController extends Controller
         ]);
     }
 
+    /**
+     * Создать новые показания текущего пользователя
+     *
+     * @return \Inertia\Response
+     */
     public function create()
     {
         $lastMeters = Meter::select('meters_last')->latest()->first();
@@ -37,6 +47,11 @@ class MetersController extends Controller
         ]);
     }
 
+    /**
+     * Сохранить созданные показания текущего пользователя
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store()
     {
         Auth::user()->account->meters()->create(
@@ -49,6 +64,12 @@ class MetersController extends Controller
         return Redirect::route('meters')->with('success', 'Meters created');
     }
 
+    /**
+     * Редактирование показаний текущего пользователя
+     *
+     * @param Meter $meter
+     * @return \Inertia\Response
+     */
     public function edit(Meter $meter)
     {
         return Inertia::render('Meters/Edit', [
@@ -61,6 +82,13 @@ class MetersController extends Controller
         ]);
     }
 
+
+    /**
+     * Обновление показаний текущего пользователя
+     *
+     * @param Meter $meter
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(Meter $meter)
     {
         $meter->update(

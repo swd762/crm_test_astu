@@ -46,7 +46,7 @@ export default {
     },
     methods: {
         store() {
-            this.form.post(this.route('bills.store'), this.account.id)
+            this.form.post(this.route('bills.store', this.account.id))
         },
     },
 }

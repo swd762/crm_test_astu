@@ -45,10 +45,6 @@ Route::group(['middleware' => 'auth'], function () {
     // basic bills actions
     Route::get('bills', [BillsController::class, 'index'])
         ->name('bills');
-//    Route::get('bills/{bill}/edit', [BillsController::class, 'edit'])
-//        ->name('bills.edit');
-//    Route::get('bills/store', [BillsController::class, 'store'])
-//        ->name('bills.store');
     Route::get('bills/{account}/create', [BillsController::class, 'create'])
         ->name('bills.create');
     Route::post('bills/{account}/store', [BillsController::class, 'store'])
@@ -63,19 +59,15 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 
-
+    // Meters from user dashboard
     Route::get('meters', [MetersController::class, 'index'])
         ->name('meters');
-
     Route::get('meters/create', [MetersController::class, 'create'])
         ->name('meters.create');
-
     Route::get('meters/{meter}/edit', [MetersController::class, 'edit'])
         ->name('meters.edit');
-
     Route::get('meters/{meter}', [MetersController::class, 'update'])
         ->name('meters.update');
-
     Route::post('meters', [MetersController::class, 'store'])
         ->name('meters.store');
 
@@ -84,7 +76,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('reports', [ReportsController::class, 'index'])
         ->name('reports');
 
-    // Abonents
+
+
+
+    // Abonents from admin dashboard
+
 
     Route::get('abonents', [AbonentsController::class, 'index'])
         ->name('abonents');

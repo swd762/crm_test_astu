@@ -41,21 +41,13 @@
                             {{ abonent.first_name }}
                         </span>
                     </td>
-                    <td class="border-t">
+                    <td class="border-t w-px px-2">
                         <inertia-link class="btn-indigo" :href="route('abonents.meters', abonent.account_id)" >
                             <span>Показания</span>
                         </inertia-link>
                         <inertia-link class="btn-indigo" :href="route('abonents.bills',abonent.account_id)">
                             <span>Счета</span>
                         </inertia-link>
-<!--                        <inertia-link class="flex items-center" :href="route('abonents.meters', abonent.account_id)" tabindex="-1">-->
-<!--                            <span class="px-6 py-4 flex items-center">Показания</span>-->
-<!--                            <icon name="cheveron-right" class="block w-6 h-6 fill-gray-400"/>-->
-<!--                        </inertia-link>-->
-<!--                        <inertia-link class="flex items-center" :href="route('abonents.bills',abonent.account_id)">-->
-<!--                            <span class="px-6 py-4 flex items-center">Счета</span>-->
-<!--                            <icon name="cheveron-right" class="block w-6 h-6 fill-gray-400"/>-->
-<!--                        </inertia-link>-->
                     </td>
                 </tr>
                 <tr v-if="abonents.data.length === 0">
@@ -69,9 +61,7 @@
 
 <script>
 import Icon from '@/Shared/Icon'
-import pickBy from 'lodash/pickBy'
 import Layout from '@/Shared/Layout'
-import throttle from 'lodash/throttle'
 import mapValues from 'lodash/mapValues'
 import Pagination from '@/Shared/Pagination'
 import SearchFilter from '@/Shared/SearchFilter'
@@ -97,12 +87,6 @@ export default {
         }
     },
     watch: {
-        form: {
-            deep: true,
-            handler: throttle(function () {
-                this.$inertia.get(this.route('abonents'), pickBy(this.form), {preserveState: true})
-            }, 150),
-        },
     },
     methods: {
         reset() {

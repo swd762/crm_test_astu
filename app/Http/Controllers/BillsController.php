@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Account;
+use App\Models\Bill;
 use App\Models\Meter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,6 +12,12 @@ use Inertia\Inertia;
 
 class BillsController extends Controller
 {
+
+    /**
+     * Список счетов текущего пользователя
+     *
+     * @return \Inertia\Response
+     */
     public function index()
     {
         return Inertia::render('Bills/Index', [
@@ -31,6 +38,12 @@ class BillsController extends Controller
         ]);
     }
 
+    /**
+     * Создать счет по выбранным показаниям
+     *
+     * @param Meter $meter
+     * @return \Inertia\Response
+     */
     public function createFromMeters(Meter $meter)
     {
         return Inertia::render('Bills/CreateFromMeters', [
@@ -38,6 +51,13 @@ class BillsController extends Controller
         ]);
     }
 
+    /**
+     * Сохранить созданный из показаний счет
+     *
+     * @param Meter $meter
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function storeFromMeters(Meter $meter, Request $request)
     {
         $account = Account::where('id', $meter->account_id)->first();
@@ -49,12 +69,25 @@ class BillsController extends Controller
         return Redirect::route('abonents.meters', $meter->account_id)->with('success', 'Bill created');
     }
 
+    /**
+     * Удаление счета из списка абонента
+     *
+     * @param Account $account
+     * @param Bill $bill
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function abonentBillsDelete(Account $account, Bill $bill)
     {
         $bill->delete();
         return Redirect::route('abonents.bills', $account->id)->with('success', 'Счет удален');
     }
 
+    /**
+     * Создание произвольного счета
+     *
+     * @param Account $account
+     * @return \Inertia\Response
+     */
     public function create(Account $account)
     {
         return Inertia::render('Bills/Create', [
@@ -62,6 +95,13 @@ class BillsController extends Controller
         ]);
     }
 
+    /**
+     * Сохранение произвольного счета
+     *
+     * @param Account $account
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(Account $account, Request $request)
     {
         $account->bills()->create([

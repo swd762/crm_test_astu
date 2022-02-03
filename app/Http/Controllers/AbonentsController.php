@@ -15,23 +15,29 @@ use Inertia\Inertia;
 
 class AbonentsController extends Controller
 {
-    //
+
+    /**
+     * Список абонентов, кроме админских аккаунтов
+     *
+     * @return \Inertia\Response
+     */
     public function index()
     {
         return Inertia::render('Abonents/Index', [
             'filters' => Request::all('search', 'trashed'),
             'abonents' => User::with('account')
+                ->where('role_id', '<>', '1')
                 ->paginate(10)
                 ->withQueryString()
-//            ->throught(fn($user) => [
-//                'id'=>$user->id,
-//                'last_name' => $user->last_name,
-//
-//            ])
-
         ]);
     }
 
+    /**
+     * Список показаний выбранного абонента
+     *
+     * @param Account $account
+     * @return \Inertia\Response
+     */
     public function abonentMeters(Account $account)
     {
         return Inertia::render('Abonents/Meters', [
@@ -53,6 +59,12 @@ class AbonentsController extends Controller
         ]);
     }
 
+    /**
+     * Список счетов выбранного абонента
+     *
+     * @param Account $account
+     * @return \Inertia\Response
+     */
     public function abonentBills(Account $account)
     {
         return Inertia::render('Abonents/Bills', [
@@ -67,12 +79,10 @@ class AbonentsController extends Controller
                     return [
                         'id' => $bill->id,
                         'amount' => $bill->amount,
-                        'is_paid'=>$bill->is_paid,
-                        'created_at' =>$bill->created_at
+                        'is_paid' => $bill->is_paid,
+                        'created_at' => $bill->created_at
                     ];
                 }),
         ]);
     }
-
-
 }
