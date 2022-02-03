@@ -10,16 +10,12 @@
                     <option value="only">Only Trashed</option>
                 </select>
             </search-filter>
-            <inertia-link class="btn-indigo" :href="route('meters.create')">
-                <span>Создать</span>
-                <span class="hidden md:inline">показания</span>
-            </inertia-link>
         </div>
         <div class="bg-white rounded-md shadow overflow-x-auto">
             <table class="w-full whitespace-nowrap">
                 <tr class="text-left font-bold">
                     <th class="px-6 pt-6 pb-4">id</th>
-                    <th class="px-6 pt-6 pb-4">Номер счета</th>
+                    <th class="px-6 pt-6 pb-4">Лицевой счет</th>
                     <th class="px-6 pt-6 pb-4">Фамилия</th>
                     <th class="px-6 pt-6 pb-4">Имя</th>
                     <th class="px-6 pt-6 pb-4">#</th>
@@ -46,14 +42,20 @@
                         </span>
                     </td>
                     <td class="border-t">
-                        <inertia-link class="flex items-center" :href="route('abonents.meters', abonent.id)" tabindex="-1">
-                            <span class="px-6 py-4 flex items-center">Показания</span>
-                            <icon name="cheveron-right" class="block w-6 h-6 fill-gray-400"/>
+                        <inertia-link class="btn-indigo" :href="route('abonents.meters', abonent.account_id)" >
+                            <span>Показания</span>
                         </inertia-link>
-                        <inertia-link class=" flex items-center" :href="route('abonents.bills',abonent.id)">
-                            <span class="px-6 py-4 flex items-center">Счета</span>
-                            <icon name="cheveron-right" class="block w-6 h-6 fill-gray-400"/>
+                        <inertia-link class="btn-indigo" :href="route('abonents.bills',abonent.account_id)">
+                            <span>Счета</span>
                         </inertia-link>
+<!--                        <inertia-link class="flex items-center" :href="route('abonents.meters', abonent.account_id)" tabindex="-1">-->
+<!--                            <span class="px-6 py-4 flex items-center">Показания</span>-->
+<!--                            <icon name="cheveron-right" class="block w-6 h-6 fill-gray-400"/>-->
+<!--                        </inertia-link>-->
+<!--                        <inertia-link class="flex items-center" :href="route('abonents.bills',abonent.account_id)">-->
+<!--                            <span class="px-6 py-4 flex items-center">Счета</span>-->
+<!--                            <icon name="cheveron-right" class="block w-6 h-6 fill-gray-400"/>-->
+<!--                        </inertia-link>-->
                     </td>
                 </tr>
                 <tr v-if="abonents.data.length === 0">

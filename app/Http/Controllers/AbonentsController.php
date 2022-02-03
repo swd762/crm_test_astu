@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Account;
+use App\Models\Bill;
 use App\Models\User;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
 use Inertia\Inertia;
 
@@ -64,11 +66,13 @@ class AbonentsController extends Controller
                 ->through(function ($bill) {
                     return [
                         'id' => $bill->id,
-                        'bill_number' => $bill->bill_number,
                         'amount' => $bill->amount,
-                        'is_paid'=>$bill->is_payd
+                        'is_paid'=>$bill->is_paid,
+                        'created_at' =>$bill->created_at
                     ];
                 }),
         ]);
     }
+
+
 }

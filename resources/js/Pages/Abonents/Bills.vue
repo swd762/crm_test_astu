@@ -13,7 +13,7 @@
                     <option value="only">Only Trashed</option>
                 </select>
             </search-filter>
-            <inertia-link class="btn-indigo" :href="route('bills.create')">
+            <inertia-link class="btn-indigo" :href="route('bills.create', account.id)">
                 <span>Создать</span>
                 <span class="hidden md:inline">счет</span>
             </inertia-link>
@@ -22,14 +22,20 @@
             <table class="w-full whitespace-nowrap">
                 <tr class="text-left font-bold">
                     <th class="px-6 pt-6 pb-4">Номер счета</th>
+                    <th class="px-6 pt-6 pb-4">Дата</th>
                     <th class="px-6 pt-6 pb-4">Сумма (руб.)</th>
                     <th class="px-6 pt-6 pb-4">Статус оплаты</th>
-                    <th class="px-6 pt-6 pb-4" colspan="2">#</th>
+                    <th class="px-6 pt-6 pb-4 text-center" colspan="2">#</th>
                 </tr>
                 <tr v-for="bill in bills.data" :key="bill.id" class="hover:bg-gray-100 focus-within:bg-gray-100">
                     <td class="border-t">
                         <span class="px-6 py-4 flex items-center">
-                        {{ bill.bill_number }}
+                        {{ bill.id }}
+                        </span>
+                    </td>
+                    <td class="border-t">
+                        <span class="px-6 py-4 flex items-center">
+                        {{ bill.created_at | moment().format('DD-MM-YYYY') }}
                         </span>
                     </td>
                     <td class="border-t">
@@ -42,11 +48,11 @@
                             {{ bill.is_paid ? 'Оплачен' : 'Не оплачен' }}
                         </span>
                     </td>
-                    <!--                    <td class="border-t w-px">-->
-                    <!--                        <inertia-link class="px-4 flex items-center" :href="route('organizations.edit', organization.id)" tabindex="-1">-->
-                    <!--                            <icon name="cheveron-right" class="block w-6 h-6 fill-gray-400" />-->
-                    <!--                        </inertia-link>-->
-                    <!--                    </td>-->
+                    <td class="border-t w-px px-2">
+                        <inertia-link class="btn-indigo" :href="route('abonents.bills.delete', [account.id, bill.id])">
+                            <span>Удалить</span>
+                        </inertia-link>
+                    </td>
                 </tr>
                 <tr v-if="bills.data.length === 0">
                     <td class="border-t px-6 py-4" colspan="4">Счетов не найдено</td>
@@ -77,7 +83,7 @@ export default {
     props: {
         filters: Object,
         bills: Object,
-        account:Object
+        account: Object
     },
     data() {
         return {
@@ -87,17 +93,13 @@ export default {
             },
         }
     },
-    watch: {
-        form: {
-            deep: true,
-            handler: throttle(function () {
-                this.$inertia.get(this.route('abonents.bills'), pickBy(this.form), {preserveState: true})
-            }, 150),
-        },
-    },
+    watch: {},
     methods: {
         reset() {
             this.form = mapValues(this.form, () => null)
+        },
+        delete() {
+
         },
     },
 }

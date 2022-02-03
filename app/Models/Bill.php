@@ -9,4 +9,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Bill extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'account_id',
+        'amount',
+    ];
 }

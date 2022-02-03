@@ -45,15 +45,20 @@ Route::group(['middleware' => 'auth'], function () {
     // basic bills actions
     Route::get('bills', [BillsController::class, 'index'])
         ->name('bills');
-    Route::get('bills/{bill}/edit', [BillsController::class, 'edit'])
-        ->name('bills.edit');
-    Route::get('bills/store', [BillsController::class, 'store'])
+//    Route::get('bills/{bill}/edit', [BillsController::class, 'edit'])
+//        ->name('bills.edit');
+//    Route::get('bills/store', [BillsController::class, 'store'])
+//        ->name('bills.store');
+    Route::get('bills/{account}/create', [BillsController::class, 'create'])
+        ->name('bills.create');
+    Route::post('bills/{account}/store', [BillsController::class, 'store'])
         ->name('bills.store');
 
+
     // create bills from meters
-    Route::get('bills/{meter}/create', [BillsController::class, 'createFromMeters'])
+    Route::get('bills/{meter}/meters/create', [BillsController::class, 'createFromMeters'])
         ->name('bills.create.meters');
-    Route::post('bills/{meter}/store', [BillsController::class, 'storeFromMeters'])
+    Route::post('bills/{meter}/meters/store', [BillsController::class, 'storeFromMeters'])
         ->name('bills.store.meters');
 
 
@@ -87,6 +92,8 @@ Route::group(['middleware' => 'auth'], function () {
         ->name('abonents.meters');
     Route::get('abonents/{account}/bills', [AbonentsController::class, 'abonentBills'])
         ->name('abonents.bills');
+    Route::get('abonents/{account}/bills/{bill}/delete', [BillsController::class, 'abonentBillsDelete'])
+        ->name('abonents.bills.delete');
 });
 
 
@@ -127,19 +134,3 @@ Route::put('users/{user}/restore', [UsersController::class, 'restore'])
 
 // bills
 
-
-//Route::get('organizations/{organization}/edit', [OrganizationsController::class, 'edit'])
-//    ->name('organizations.edit')
-//    ->middleware('auth');
-//
-//Route::put('organizations/{organization}', [OrganizationsController::class, 'update'])
-//    ->name('organizations.update')
-//    ->middleware('auth');
-//
-//Route::delete('organizations/{organization}', [OrganizationsController::class, 'destroy'])
-//    ->name('organizations.destroy')
-//    ->middleware('auth');
-//
-//Route::put('organizations/{organization}/restore', [OrganizationsController::class, 'restore'])
-//    ->name('organizations.restore')
-//    ->middleware('auth');

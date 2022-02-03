@@ -32,11 +32,9 @@ import Layout from '@/Shared/Layout'
 import throttle from 'lodash/throttle'
 import mapValues from 'lodash/mapValues'
 import Pagination from '@/Shared/Pagination'
-import SearchFilter from '@/Shared/SearchFilter'
 import SelectInput from '@/Shared/SelectInput'
 import LoadingButton from '@/Shared/LoadingButton'
 import TextInput from '@/Shared/TextInput'
-import meters from "../Abonents/Meters";
 
 export default {
     name: "CreateFromMeters",
@@ -44,7 +42,7 @@ export default {
     components: {
         Icon,
         Pagination,
-        SearchFilter,
+        // SearchFilter,
         SelectInput,
         LoadingButton,
         TextInput
