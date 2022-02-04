@@ -55,10 +55,6 @@
                          </span>
                     </td>
                     <td class="border-t w-px px-2">
-<!--                        <inertia-link class="flex items-center" :href="route('bills.create.meters',meter.id)" tabindex="-1">-->
-<!--                            <span class="px-2 py-2 flex items-center">выставить счет</span>-->
-<!--                            <icon name="cheveron-right" class="block w-6 h-6 fill-gray-400"/>-->
-<!--                        </inertia-link>-->
                         <inertia-link class="btn-indigo" :href="route('bills.create.meters',meter.id)" tabindex="-1">
                             <span>Выставить счет</span>
                         </inertia-link>

@@ -66,9 +66,9 @@ Route::group(['middleware' => 'auth'], function () {
         ->name('meters.create');
     Route::get('meters/{meter}/edit', [MetersController::class, 'edit'])
         ->name('meters.edit');
-    Route::get('meters/{meter}', [MetersController::class, 'update'])
+    Route::put('meters/{meter}/update', [MetersController::class, 'update'])
         ->name('meters.update');
-    Route::post('meters', [MetersController::class, 'store'])
+    Route::post('meters/store', [MetersController::class, 'store'])
         ->name('meters.store');
 
 

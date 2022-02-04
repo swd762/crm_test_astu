@@ -42,7 +42,7 @@ class HandleInertiaRequests extends Middleware
                 return [
                     'user' => $request->user() ? [
                         'id' => $request->user()->id,
-                        'name' => $request->user()->name,
+                        'first_name' => $request->user()->first_name,
                         'last_name' => $request->user()->last_name,
                         'email' => $request->user()->email,
                         'account' => implode($request->user()->account()->pluck('account_num')->all()) ?? 'null',

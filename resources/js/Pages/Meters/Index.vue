@@ -32,17 +32,17 @@
                     </td>
                     <td class="border-t">
                         <inertia-link class="px-6 py-4 flex items-center" :href="route('meters.edit', meter.id)" tabindex="-1">
-                            {{ meter.meters_previous }}
+                            {{ meter.previous }}
                         </inertia-link>
                     </td>
                     <td class="border-t">
                         <inertia-link class="px-6 py-4 flex items-center" :href="route('meters.edit', meter.id)" tabindex="-1">
-                            {{ meter.meters_last }}
+                            {{ meter.last }}
                         </inertia-link>
                     </td>
                     <td class="border-t">
                         <inertia-link class="px-6 py-4 flex items-center" :href="route('meters.edit', meter.id)" tabindex="-1">
-                            {{ meter.meters_last - meter.meters_previous }}
+                            {{ meter.last - meter.previous }}
                         </inertia-link>
                     </td>
                     <td class="border-t">
@@ -95,12 +95,12 @@ export default {
         }
     },
     watch: {
-        form: {
-            deep: true,
-            handler: throttle(function () {
-                this.$inertia.get(this.route('user.meters'), pickBy(this.form), {preserveState: true})
-            }, 150),
-        },
+        // form: {
+        //     deep: true,
+        //     handler: throttle(function () {
+        //         this.$inertia.get(this.route('user.meters'), pickBy(this.form), {preserveState: true})
+        //     }, 150),
+        // },
     },
     methods: {
         reset() {

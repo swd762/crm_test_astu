@@ -2,13 +2,13 @@
     <div>
         <h1 class="mb-8 font-bold text-3xl">
             <inertia-link class="text-indigo-400 hover:text-indigo-600" :href="route('meters')">Показания</inertia-link>
-            <span class="text-indigo-400 font-medium">/</span> Create
+            <span class="text-indigo-400 font-medium">/</span> Создать
         </h1>
         <div class="bg-white rounded-md shadow overflow-hidden max-w-3xl">
             <form @submit.prevent="store">
                 <div class="p-8 -mr-6 -mb-8 flex flex-wrap">
-                    <text-input type="Number" v-model.number="form.meters_previous" :error="form.errors.name" class="pr-6 pb-8 w-full lg:w-1/2" label="Прошлые показания"/>
-                    <text-input type="Number" v-model.number="form.meters_last" :error="form.errors.email" class="pr-6 pb-8 w-full lg:w-1/2" label="Последние показания"/>
+                    <text-input type="Number" v-model.number="form.previous" :error="form.errors.name" class="pr-6 pb-8 w-full lg:w-1/2" label="Прошлые показания"/>
+                    <text-input type="Number" v-model.number="form.last" :error="form.errors.email" class="pr-6 pb-8 w-full lg:w-1/2" label="Последние показания"/>
                 </div>
                 <div class="px-8 py-4 bg-gray-50 border-t border-gray-100 flex justify-end items-center">
                     <loading-button :loading="form.processing" class="btn-indigo" type="submit">Подать показания</loading-button>
@@ -34,13 +34,13 @@ export default {
     layout: Layout,
     remember: 'form',
     props: {
-        meters_last: Number
+        last: Number
     },
     data() {
         return {
             form: this.$inertia.form({
-                meters_previous: this.meters_last,
-                meters_last: null,
+                previous: this.last,
+                last: null,
             }),
         }
     },

@@ -19,7 +19,7 @@
                     </div>
                     <div class="bg-white border-b w-full p-4 md:py-0 md:px-12 text-sm md:text-md flex justify-between items-center">
                         <div class="mt-1 mr-4">
-                            <div v-if="$page.props.auth.user.role=user">
+                            <div v-if="$page.props.auth.user.role==='user'">
                                 <span class="font-bold">Лицевой счет: </span>
                                 <span>{{ $page.props.auth.user.account }}</span>
                             </div>
@@ -30,7 +30,7 @@
                         <dropdown class="mt-1" placement="bottom-end">
                             <div class="flex items-center cursor-pointer select-none group">
                                 <div class="text-gray-700 group-hover:text-indigo-600 focus:text-indigo-600 mr-1 whitespace-nowrap">
-                                    <span>{{ $page.props.auth.user.name }}</span>
+                                    <span>{{ $page.props.auth.user.first_name }}</span>
                                     <span class="hidden md:inline">{{ $page.props.auth.user.last_name }}</span>
                                 </div>
                                 <icon class="w-5 h-5 group-hover:fill-indigo-600 fill-gray-700 focus:fill-indigo-600" name="cheveron-down"/>

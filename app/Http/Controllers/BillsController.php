@@ -21,10 +21,10 @@ class BillsController extends Controller
     public function index()
     {
         return Inertia::render('Bills/Index', [
-            'filters' => Request::all('search', 'trashed'),
+            'filters' => \Illuminate\Support\Facades\Request::all('search', 'trashed'),
             'bills' => Auth::user()->account->bills()
-                ->orderBy('name')
-                ->filter(Request::only('search', 'trashed'))
+//                ->orderBy('name')
+//                ->filter(Request::only('search', 'trashed'))
                 ->paginate(10)
                 ->withQueryString()
                 ->through(function ($bill) {
@@ -66,7 +66,7 @@ class BillsController extends Controller
             'amount' => $request->amount
         ]);
 
-        return Redirect::route('abonents.meters', $meter->account_id)->with('success', 'Bill created');
+        return Redirect::route('abonents.meters', $meter->account_id)->with('success', 'Счет создан');
     }
 
     /**
